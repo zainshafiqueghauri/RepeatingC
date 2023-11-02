@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using RepeatingC.Data;
+
 namespace RepeatingC
 {
     public class Program
@@ -8,6 +11,10 @@ namespace RepeatingC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            //Dbcontext Configuration
+            builder.Services.AddDbContext<AppDbContext>
+                (options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
             var app = builder.Build();
 
